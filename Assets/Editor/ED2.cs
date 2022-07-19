@@ -16,7 +16,8 @@ public class ED2 : Editor
         }
         for (int i = 0; i < GameObject.FindObjectsOfType<Sphere>().Length; i++)
         {
-            GameObject.FindObjectsOfType<Sphere>()[i].Update();
+            GameObject.FindObjectsOfType<Sphere>()[i].Update(); 
+            GameObject.FindObjectsOfType<Sphere>()[i].move();
         }
 
 

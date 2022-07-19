@@ -3236,7 +3236,7 @@ public class MathHyper : MonoBehaviour
 
 
     
-    public static float sqrRayon = 450;
+    public static float sqrRayon = 430;
 
     // Use this for initialization
     void Start()
@@ -3335,8 +3335,8 @@ public class MathHyper : MonoBehaviour
         float posX = objet.transform.position.x - Camera.main.transform.position.x;
         float posZ = objet.transform.position.z - Camera.main.transform.position.z;
         float posW = p.z;
-        float sqrDistance = 449.99999f;
-        if (posX * posX + posZ * posZ + posW * posW < 450)
+        float sqrDistance = 429.99999f;
+        if (posX * posX + posZ * posZ + posW * posW < 430)
         {
 
 
@@ -3356,8 +3356,8 @@ public class MathHyper : MonoBehaviour
 
         float posX = p.x;
         float posZ = p.z;
-        float sqrDistance =449.99999f;
-        if (posX * posX + posZ * posZ <450)
+        float sqrDistance =429.99999f;
+        if (posX * posX + posZ * posZ <430)
         {
 
 
@@ -3378,8 +3378,8 @@ public class MathHyper : MonoBehaviour
 
         float posX = objet.transform.position.x -Camera.main.transform.position.x;
         float posZ = objet.transform.position.z -Camera.main.transform.position.z;
-        float sqrDistance = 449.99999f;
-        if (posX * posX + posZ * posZ <450)
+        float sqrDistance = 429.99999f;
+        if (posX * posX + posZ * posZ <430)
         {
 
 
@@ -3416,8 +3416,75 @@ public class tringle : MonoBehaviour
     public MeshCollider mc;
     public bool v;
     Vector3 v31; Vector3 v32; Vector3 v33;
-   
-    
+    public bool px; public bool py; public bool mx; public bool my;
+    public bool px1; public bool py1; public bool mx1; public bool my1;
+    public bool px2; public bool py2; public bool mx2; public bool my2;
+
+    public void move()
+    {
+        if (px)
+        {
+            p2.preApplyTranslationY(-1);
+            px = !px;
+        }
+        if (mx)
+        {
+            p2.preApplyTranslationY(1);
+            mx = !mx;
+        }
+        if (py)
+        {
+            p2.preApplyTranslationZ(-1);
+            py = !py;
+        }
+        if (my)
+        {
+            p2.preApplyTranslationZ(1);
+            my = !my;
+        }
+        if (px1)
+        {
+            p3.preApplyTranslationY(-1);
+            px1 = !px1;
+        }
+        if (mx1)
+        {
+            p3.preApplyTranslationY(1);
+            mx1 = !mx1;
+        }
+        if (py1)
+        {
+            p3.preApplyTranslationZ(-1);
+            py1 = !py1;
+        }
+        if (my1)
+        {
+            p3.preApplyTranslationZ(1);
+            my1 = !my1;
+        }
+        if (px2)
+        {
+            p4.preApplyTranslationY(-1);
+            px2 = !px2;
+        }
+        if (mx2)
+        {
+            p4.preApplyTranslationY(1);
+            mx2 = !mx2;
+        }
+        if (py2)
+        {
+            p4.preApplyTranslationZ(-1);
+            py2 = !py2;
+        }
+        if (my2)
+        {
+            p4.preApplyTranslationZ(1);
+            my2 = !my2;
+        }
+    }
+
+
 
     PolarTransform polarTransform;
     private void Start()

@@ -7,6 +7,32 @@ public class Sphere : MonoBehaviour
 
     public PolarTransform p2 = new PolarTransform();
     public Vector3 ls;
+    public float v1 = 0;
+    public bool px; public bool py; public bool mx; public bool my;
+    
+    public void move()
+    {
+        if (px)
+        {
+            p2.preApplyTranslationY(-1);
+            px = !px;
+        }
+        if (mx)
+        {
+            p2.preApplyTranslationY(1);
+            mx = !mx;
+        }
+        if (py)
+        {
+            p2.preApplyTranslationZ(-1);
+            py = !py;
+        }
+        if (my)
+        {
+            p2.preApplyTranslationZ(1);
+            my = !my;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +62,7 @@ public class Sphere : MonoBehaviour
             nextPoint = MathHyper.projectOntoScreen(nextPoint);
             if (i >= inc)
             {
-                transform.position = new Vector3(prevPoint.x, 0, prevPoint.y);
+                transform.position = new Vector3(prevPoint.x, v1, prevPoint.y);
             }
 
             prevPoint = nextPoint;
