@@ -4,7 +4,33 @@ using UnityEngine;
 
 public class Camd : MonoBehaviour
 {
-    public PolarTransform polarTransform = new PolarTransform(0,0.01f,0f);
+    public PolarTransform polarTransform = new PolarTransform(0, 0.01f, 0f);
+    public bool px; public bool py; public bool mx; public bool my;
+    public Light light1;
+    public void move()
+    {
+        if (px)
+        {
+            polarTransform.preApplyTranslationY(-1);
+            px = !px;
+        }
+        if (mx)
+        {
+            polarTransform.preApplyTranslationY(1);
+            mx = !mx;
+        }
+        if (py)
+        {
+            polarTransform.preApplyTranslationZ(-1);
+            py = !py;
+        }
+        if (my)
+        {
+            polarTransform.preApplyTranslationZ(1);
+            my = !my;
+        }
+    }
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +57,9 @@ public class Camd : MonoBehaviour
         //Vertical
         polarTransform.preApplyTranslationZ(-Input.GetAxis("Vertical") * Time.deltaTime);
         polarTransform.preApplyTranslationY(-Input.GetAxis("Horizontal") * Time.deltaTime);
-        polarTransform.preApplyRotation(Input.GetAxis("Mouse X") * Time.deltaTime);
+        float r = Input.GetAxis("Mouse X") * Time.deltaTime;
+        polarTransform.preApplyRotation(r);
+        light1.transform.rotation = Quaternion.Euler(light1.transform.rotation.eulerAngles.x, light1.transform.rotation.eulerAngles.y - r / Time.deltaTime, light1.transform.rotation.eulerAngles.z);
         transform.Rotate(-Input.GetAxis("Mouse Y"),0,0);
 
     }

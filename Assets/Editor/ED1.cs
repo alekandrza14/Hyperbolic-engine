@@ -11,6 +11,7 @@ public class ED1 : Editor
     public override void OnInspectorGUI()
     {
         Camd mp = (Camd)target;
+        mp.move();
         for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)
         {
             GameObject.FindObjectsOfType<tringle>()[i].up2(Camd.Main().polarTransform);

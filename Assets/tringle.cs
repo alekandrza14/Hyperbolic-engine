@@ -3236,7 +3236,7 @@ public class MathHyper : MonoBehaviour
 
 
     
-    public static float sqrRayon = 400f;
+    public static float sqrRayon = 450;
 
     // Use this for initialization
     void Start()
@@ -3335,8 +3335,8 @@ public class MathHyper : MonoBehaviour
         float posX = objet.transform.position.x - Camera.main.transform.position.x;
         float posZ = objet.transform.position.z - Camera.main.transform.position.z;
         float posW = p.z;
-        float sqrDistance = 99.99f;
-        if (posX * posX + posZ * posZ + posW * posW < 100)
+        float sqrDistance = 449.99999f;
+        if (posX * posX + posZ * posZ + posW * posW < 450)
         {
 
 
@@ -3356,8 +3356,8 @@ public class MathHyper : MonoBehaviour
 
         float posX = p.x;
         float posZ = p.z;
-        float sqrDistance = 399.999f;
-        if (posX * posX + posZ * posZ < 400)
+        float sqrDistance =449.99999f;
+        if (posX * posX + posZ * posZ <450)
         {
 
 
@@ -3378,12 +3378,12 @@ public class MathHyper : MonoBehaviour
 
         float posX = objet.transform.position.x -Camera.main.transform.position.x;
         float posZ = objet.transform.position.z -Camera.main.transform.position.z;
-        float sqrDistance = 99.99f;
-        if (posX * posX + posZ * posZ < 100)
+        float sqrDistance = 449.99999f;
+        if (posX * posX + posZ * posZ <450)
         {
 
 
-            sqrDistance =  posX * posX + posZ * posZ / 20;
+            sqrDistance =  posX * posX + posZ * posZ;
 
         }
 
@@ -3405,9 +3405,9 @@ public class tringle : MonoBehaviour
     float constdist = 4;
     public static float speed = 10.0f; public static float speed2 = 10.0f;
     public static float rotationSpeed = 10.0f;
-    public Vector3 vecteur111 = new Vector3(1, 1, 1);
-    public Vector3 vecteur222 = new Vector3(1, 1, 1);
-    public Vector3 vecteur333 = new Vector3(1, 1, 1);
+    public float v1 = 0;
+    public float v2 = 0;
+    public float v3 = 0;
     public bool w;
     public PolarTransform p2 = new PolarTransform(); 
     public PolarTransform p3 = new PolarTransform();
@@ -3416,7 +3416,6 @@ public class tringle : MonoBehaviour
     public MeshCollider mc;
     public bool v;
     Vector3 v31; Vector3 v32; Vector3 v33;
-
    
     
 
@@ -3439,14 +3438,21 @@ public class tringle : MonoBehaviour
         Deplacement();
 
     }
+    
     public void Createmath(Vector3 v1, Vector3 v2, Vector3 v3)
     {
-
+        
         var m = new Mesh();
         m.Clear();
         Vector3[] verticles = new Vector3[3]
        {
             v1,v2,v3
+       }; Vector3[] n = new Vector3[3]
+       {
+            Vector3.up,Vector3.up,Vector3.up
+       }; Vector2[] uv = new Vector2[3]
+       {
+          new Vector2(0,1) , new Vector2(0,0), new Vector2(1,0)
        }; int[] tranglse = new int[3]
        {
             0,1,2
@@ -3460,6 +3466,8 @@ public class tringle : MonoBehaviour
         }
         m.SetVertices(verticles);
         m.triangles=tranglse;
+        m.uv = uv;
+        m.normals = n;
 
         mf.sharedMesh = m;
         mc.sharedMesh = m;
@@ -3503,7 +3511,7 @@ public class tringle : MonoBehaviour
                 nextPoint = MathHyper.projectOntoScreen(nextPoint);
                 if (i >= inc)
                 {
-                    v31 = new Vector3(prevPoint.x, 0, prevPoint.y);
+                    v31 = new Vector3(prevPoint.x, v1, prevPoint.y);
                 }
 
                 prevPoint = nextPoint;
@@ -3530,7 +3538,7 @@ public class tringle : MonoBehaviour
                 nextPoint2 = MathHyper.projectOntoScreen(nextPoint2);
                 if (i >= inc1)
                 {
-                    v32 = new Vector3(prevPoint1.x, 0, prevPoint1.y);
+                    v32 = new Vector3(prevPoint1.x, v2, prevPoint1.y);
                 }
 
                 prevPoint1 = nextPoint2;
@@ -3557,7 +3565,7 @@ public class tringle : MonoBehaviour
                 nextPoint3 = MathHyper.projectOntoScreen(nextPoint3);
                 if (i >= inc)
                 {
-                    v33= new Vector3(prevPoint2.x, 0, prevPoint2.y);
+                    v33= new Vector3(prevPoint2.x, v3, prevPoint2.y);
                 }
 
                 prevPoint2 = nextPoint3;
@@ -3691,22 +3699,9 @@ public class tringle : MonoBehaviour
 
     private void Update()
     {
-        float translation3 = 0.0f;
-        if (Input.GetKey(KeyCode.Z))
-        {
-           
-
-            translation3 = - speed * Time.deltaTime;
-            vecteur222 += new Vector3(0, 0, translation3);
-        }
-        if (Input.GetKey(KeyCode.X))
-        {
-
-
-            translation3 = speed * Time.deltaTime;
-            vecteur222 += new Vector3(0, 0, translation3);
-        }
-        Point p = Point.Add(new Point(1, 1), new Size(new Point(2, 2)));
+        
+        
+        
 
 
     }
