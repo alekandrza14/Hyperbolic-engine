@@ -3236,7 +3236,7 @@ public class MathHyper : MonoBehaviour
 
 
     
-    public static float sqrRayon = 125.5f;
+    public static float sqrRayon = 400f;
 
     // Use this for initialization
     void Start()
@@ -3356,8 +3356,8 @@ public class MathHyper : MonoBehaviour
 
         float posX = p.x;
         float posZ = p.z;
-        float sqrDistance = 99.99f;
-        if (posX * posX + posZ * posZ < 100)
+        float sqrDistance = 399.999f;
+        if (posX * posX + posZ * posZ < 400)
         {
 
 

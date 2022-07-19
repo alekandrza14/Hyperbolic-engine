@@ -32,6 +32,7 @@ public class Camd : MonoBehaviour
         polarTransform.preApplyTranslationZ(-Input.GetAxis("Vertical") * Time.deltaTime);
         polarTransform.preApplyTranslationY(-Input.GetAxis("Horizontal") * Time.deltaTime);
         polarTransform.preApplyRotation(Input.GetAxis("Mouse X") * Time.deltaTime);
+        transform.Rotate(-Input.GetAxis("Mouse Y"),0,0);
 
     }
 }
