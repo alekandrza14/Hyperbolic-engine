@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4112068861497796812}
   - component: {fileID: 4112068861497796813}
   m_Layer: 0
-  m_Name: Cube (15)
+  m_Name: tringle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
