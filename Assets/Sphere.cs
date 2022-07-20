@@ -9,7 +9,7 @@ public class Sphere : MonoBehaviour
     public Vector3 ls;
     public float v1 = 0;
     public bool px; public bool py; public bool mx; public bool my;
-    
+
     public void move()
     {
         if (px)
@@ -36,7 +36,20 @@ public class Sphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+    static public void ALLSpheresRot(float r)
+    {
+        for (int i = 0; i < ALLSpheres().Length;i++)
+        {
+            float ds = MathHyper.Facteur2(ALLSpheres()[i].gameObject, ALLSpheres()[i].transform.position);
+            ALLSpheres()[i].transform.rotation = Quaternion.Euler(ALLSpheres()[i].transform.rotation.eulerAngles.x, ALLSpheres()[i].transform.rotation.eulerAngles.y - r / Time.deltaTime *3.14f * ds, ALLSpheres()[i].transform.rotation.eulerAngles.z);
+
+        }
+    }
+    static public Sphere[] ALLSpheres()
+    {
+        return GameObject.FindObjectsOfType<Sphere>();
     }
 
     // Update is called once per frame
@@ -47,7 +60,7 @@ public class Sphere : MonoBehaviour
 
         PVector prevPoint = new PVector();
         //json1.getFloat("n"),json1.getFloat("s"),json1.getFloat("m")
-
+        float ds = MathHyper.Facteur2(gameObject, transform.position);
         float inc = 0.1f;
         for (float i = 0; i < inc * 2; i += inc)
         {
@@ -60,15 +73,21 @@ public class Sphere : MonoBehaviour
             Camd.Main().polarTransform.getMatrix().mult(nextPoint, nextPoint);
 
             nextPoint = MathHyper.projectOntoScreen(nextPoint);
-            if (i >= inc)
-            {
-                transform.position = new Vector3(prevPoint.x, v1, prevPoint.y);
+            
+                if (i >= inc)
+                {
+                    transform.position = new Vector3(prevPoint.x, v1 * ds, prevPoint.y);
+                
             }
+
+
+            
 
             prevPoint = nextPoint;
 
 
         }
+        
         transform.localScale = ls * MathHyper.Facteur2(gameObject, transform.position);
     }
 }

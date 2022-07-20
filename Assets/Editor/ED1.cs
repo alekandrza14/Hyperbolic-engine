@@ -12,6 +12,7 @@ public class ED1 : Editor
     {
         Camd mp = (Camd)target;
         mp.move();
+
         for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)
         {
             GameObject.FindObjectsOfType<tringle>()[i].up2(Camd.Main().polarTransform);

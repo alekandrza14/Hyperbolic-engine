@@ -9,6 +9,7 @@ public class ED2 : Editor
     const string resourceFilename = "custom-editor-uie";
     public override void OnInspectorGUI()
     {
+        
         Sphere mp = (Sphere)target;
         for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)
         {
