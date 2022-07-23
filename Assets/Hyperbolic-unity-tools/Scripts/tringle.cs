@@ -3420,67 +3420,67 @@ public class tringle : MonoBehaviour
     public bool px1; public bool py1; public bool mx1; public bool my1;
     public bool px2; public bool py2; public bool mx2; public bool my2;
    static public bool iseditor = false;
-
+    public float x;
     public void move()
     {
         if (px)
         {
-            p2.preApplyTranslationY(-1);
+            p2.preApplyTranslationY(-1 * x * 0.02f);
             px = !px;
         }
         if (mx)
         {
-            p2.preApplyTranslationY(1);
+            p2.preApplyTranslationY(1 * x * 0.02f);
             mx = !mx;
         }
         if (py)
         {
-            p2.preApplyTranslationZ(-1);
+            p2.preApplyTranslationZ(-1 * x * 0.02f);
             py = !py;
         }
         if (my)
         {
-            p2.preApplyTranslationZ(1);
+            p2.preApplyTranslationZ(1 * x * 0.02f);
             my = !my;
         }
         if (px1)
         {
-            p3.preApplyTranslationY(-1);
+            p3.preApplyTranslationY(-1 * x * 0.02f);
             px1 = !px1;
         }
         if (mx1)
         {
-            p3.preApplyTranslationY(1);
+            p3.preApplyTranslationY(1 * x * 0.02f);
             mx1 = !mx1;
         }
         if (py1)
         {
-            p3.preApplyTranslationZ(-1);
+            p3.preApplyTranslationZ(-1 * x * 0.02f);
             py1 = !py1;
         }
         if (my1)
         {
-            p3.preApplyTranslationZ(1);
+            p3.preApplyTranslationZ(1 * x * 0.02f);
             my1 = !my1;
         }
         if (px2)
         {
-            p4.preApplyTranslationY(-1);
+            p4.preApplyTranslationY(-1 * x * 0.02f);
             px2 = !px2;
         }
         if (mx2)
         {
-            p4.preApplyTranslationY(1);
+            p4.preApplyTranslationY(1 * x * 0.02f);
             mx2 = !mx2;
         }
         if (py2)
         {
-            p4.preApplyTranslationZ(-1);
+            p4.preApplyTranslationZ(-1 * x * 0.02f);
             py2 = !py2;
         }
         if (my2)
         {
-            p4.preApplyTranslationZ(1);
+            p4.preApplyTranslationZ(1 * x * 0.02f);
             my2 = !my2;
         }
     }

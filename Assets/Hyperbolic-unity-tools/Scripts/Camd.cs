@@ -11,26 +11,27 @@ public class Camd : MonoBehaviour
     public Rigidbody rb;
     public Light light1;
     public float radiuscolider;
+    public float x;
     public void move()
     {
         if (px)
         {
-            polarTransform.preApplyTranslationY(-1);
+            polarTransform.preApplyTranslationY(-1 * x * 0.02f);
             px = !px;
         }
         if (mx)
         {
-            polarTransform.preApplyTranslationY(1);
+            polarTransform.preApplyTranslationY(1 * x * 0.02f);
             mx = !mx;
         }
         if (py)
         {
-            polarTransform.preApplyTranslationZ(-1);
+            polarTransform.preApplyTranslationZ(-1 * x * 0.02f);
             py = !py;
         }
         if (my)
         {
-            polarTransform.preApplyTranslationZ(1);
+            polarTransform.preApplyTranslationZ(1 * x * 0.02f);
             my = !my;
         }
     }
@@ -54,27 +55,39 @@ public class Camd : MonoBehaviour
     }
     private void LateUpdate()
     {
-        Ray r = new Ray(new Vector3(0, 0, 0), new Vector3(0, 0.5f, 1));
-
-        RaycastHit hit;
-        if (Physics.Raycast(r, out hit))
+        if (Input.GetAxis("Vertical") > 0)
         {
-            if (hit.distance <= radiuscolider)
+            Ray r = new Ray(transform.position, new Vector3(0, 0.5f, 1) + transform.position);
+
+            RaycastHit hit;
+            if (Physics.Raycast(r, out hit))
             {
-                polarTransform.preApplyTranslationZ(Time.deltaTime);
+                if (hit.distance <= radiuscolider)
+                {
+                    polarTransform.preApplyTranslationZ(Time.deltaTime);
+                }
             }
         }
-        Ray r2 = new Ray(new Vector3(0, 0, 0), new Vector3(0, 0.5f, -1));
-
-        RaycastHit hit2;
-        if (Physics.Raycast(r2, out hit2))
+        if (Input.GetAxis("Vertical") < 0)
         {
-            if (hit2.distance <= radiuscolider)
+
+
+            Ray r2 = new Ray(transform.position, new Vector3(0, 0.5f, -1) + transform.position);
+
+            RaycastHit hit2;
+            if (Physics.Raycast(r2, out hit2))
             {
-                polarTransform.preApplyTranslationZ(-Time.deltaTime);
+                if (hit2.distance <= radiuscolider)
+                {
+                    polarTransform.preApplyTranslationZ(-Time.deltaTime);
+                }
             }
         }
-        Ray r3 = new Ray(new Vector3(0, 0, 0), new Vector3(1, 0.5f, 0));
+
+
+
+        Ray r3 = new Ray(transform.position, new Vector3(1, 0.5f, 0) + transform.position);
+
 
         RaycastHit hit3;
         if (Physics.Raycast(r3, out hit3))
@@ -84,7 +97,8 @@ public class Camd : MonoBehaviour
                 polarTransform.preApplyTranslationY(Time.deltaTime);
             }
         }
-        Ray r4 = new Ray(new Vector3(0, 0, 0), new Vector3(-1, 0.5f, 0));
+
+        Ray r4 = new Ray(transform.position, new Vector3(-1, 0.5f, 0) + transform.position);
 
         RaycastHit hit4;
         if (Physics.Raycast(r4, out hit4))
@@ -94,12 +108,12 @@ public class Camd : MonoBehaviour
                 polarTransform.preApplyTranslationY(-Time.deltaTime);
             }
         }
-       
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
 
         for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)

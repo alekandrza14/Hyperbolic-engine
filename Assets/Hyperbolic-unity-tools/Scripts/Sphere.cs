@@ -8,28 +8,29 @@ public class Sphere : MonoBehaviour
     public PolarTransform p2 = new PolarTransform();
     public Vector3 ls;
     public float v1 = 0;
+    public float x;
     public bool px; public bool py; public bool mx; public bool my;
 
     public void move()
     {
         if (px)
         {
-            p2.preApplyTranslationY(-1);
+            p2.preApplyTranslationY(-1*x * 0.02f);
             px = !px;
         }
         if (mx)
         {
-            p2.preApplyTranslationY(1);
+            p2.preApplyTranslationY(1 * x * 0.02f);
             mx = !mx;
         }
         if (py)
         {
-            p2.preApplyTranslationZ(-1);
+            p2.preApplyTranslationZ(-1 * x * 0.02f);
             py = !py;
         }
         if (my)
         {
-            p2.preApplyTranslationZ(1);
+            p2.preApplyTranslationZ(1 * x*0.02f);
             my = !my;
         }
     }
