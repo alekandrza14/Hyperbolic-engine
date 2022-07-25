@@ -35,6 +35,11 @@ public class Camd : MonoBehaviour
             my = !my;
         }
     }
+    private void Start()
+    {
+        tringle.iseditor = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void OnCollisionEnter(Collision c)
     {
         
@@ -44,11 +49,7 @@ public class Camd : MonoBehaviour
     }
 
         // Start is called before the first frame update
-        void Start()
-    {
-        
-        tringle.iseditor = false;
-    }
+    
     public static Camd Main()
     {
         return FindObjectsOfType<Camd>()[0];
@@ -115,7 +116,10 @@ public class Camd : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)
         {
             GameObject.FindObjectsOfType<tringle>()[i].up2(polarTransform);

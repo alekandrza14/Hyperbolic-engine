@@ -3488,10 +3488,7 @@ public class tringle : MonoBehaviour
 
 
     PolarTransform polarTransform;
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    
     public void up()
     {
 
