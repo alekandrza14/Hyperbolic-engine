@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Camd : MonoBehaviour
 {
@@ -42,8 +43,11 @@ public class Camd : MonoBehaviour
     }
     void OnCollisionEnter(Collision c)
     {
-        
 
+        if (c.collider.tag == "deadpol")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
             
     }
@@ -58,7 +62,7 @@ public class Camd : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") > 0)
         {
-            Ray r = new Ray(transform.position, new Vector3(0, 0.5f, 1) + transform.position);
+            Ray r = new Ray(transform.position, new Vector3(0, 0.5f, 1));
 
             RaycastHit hit;
             if (Physics.Raycast(r, out hit))
@@ -73,7 +77,7 @@ public class Camd : MonoBehaviour
         {
 
 
-            Ray r2 = new Ray(transform.position, new Vector3(0, 0.5f, -1) + transform.position);
+            Ray r2 = new Ray(transform.position, new Vector3(0, 0.5f, -1));
 
             RaycastHit hit2;
             if (Physics.Raycast(r2, out hit2))
@@ -87,7 +91,7 @@ public class Camd : MonoBehaviour
 
 
 
-        Ray r3 = new Ray(transform.position, new Vector3(1, 0.5f, 0) + transform.position);
+        Ray r3 = new Ray(transform.position, new Vector3(1, 0.5f, 0));
 
 
         RaycastHit hit3;
@@ -99,7 +103,7 @@ public class Camd : MonoBehaviour
             }
         }
 
-        Ray r4 = new Ray(transform.position, new Vector3(-1, 0.5f, 0) + transform.position);
+        Ray r4 = new Ray(transform.position, new Vector3(-1, 0.5f, 0));
 
         RaycastHit hit4;
         if (Physics.Raycast(r4, out hit4))
@@ -114,7 +118,7 @@ public class Camd : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -129,23 +133,29 @@ public class Camd : MonoBehaviour
         {
             GameObject.FindObjectsOfType<Sphere>()[i].Update();
         }
-        transform.position = new Vector3(0, transform.position.y, 0);
+       
         //Vertical
 
       Vector3 v =  Vector3.MoveTowards(Vector3.zero,new Vector3(-Input.GetAxis("Vertical") * Time.deltaTime, -Input.GetAxis("Horizontal") * Time.deltaTime),2);
         
         polarTransform.preApplyTranslationZ(v.x);
         polarTransform.preApplyTranslationY(v.y);
-       
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
 
 
 
-        float r1 = Input.GetAxis("Mouse X") * Time.deltaTime;
-        polarTransform.preApplyRotation(r1);
+            float r1 = Input.GetAxis("Mouse X") * Time.deltaTime *1.5f;
+            polarTransform.preApplyRotation(r1);
 
-        light1.transform.rotation = Quaternion.Euler(light1.transform.rotation.eulerAngles.x, light1.transform.rotation.eulerAngles.y - r1 / Time.deltaTime, light1.transform.rotation.eulerAngles.z);
-        Sphere.ALLSpheresRot(r1);
-        transform.Rotate(-Input.GetAxis("Mouse Y")+ Random.Range(-0.01f, 0.01f), 0, Random.Range(-0.01f, 0.01f));
+            light1.transform.rotation = Quaternion.Euler(light1.transform.rotation.eulerAngles.x, light1.transform.rotation.eulerAngles.y - r1 / Time.deltaTime, light1.transform.rotation.eulerAngles.z);
+            
+        }
 
     }
 }
