@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/4D-tools/demo.unity
     guid: 2c8d8e39553f70b48bae4b6c489d1fd5
+  - enabled: 1
+    path: Assets/Hyperbolic-unity-tools/Scenes/newdemo.unity
+    guid: b7f7edf76547d364bb1f4517abfda657
   m_configObjects: {}

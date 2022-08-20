@@ -1,7 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+public class editorsave
+{
+    public PolarTransform pos;
+
+}
+[ExecuteAlways]
+public class load : MonoBehaviour
+{
+
+}
 
 public class Camd : MonoBehaviour
 {
@@ -41,6 +52,7 @@ public class Camd : MonoBehaviour
         tringle.iseditor = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
     void OnCollisionEnter(Collision c)
     {
 
@@ -120,6 +132,12 @@ public class Camd : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
+        if (Directory.Exists("Assets") && Input.GetKeyDown(KeyCode.F1))
+        {
+            editorsave es = new editorsave();
+            es.pos = polarTransform;
+            File.WriteAllText("Assets/player.json",JsonUtility.ToJson(es));
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
