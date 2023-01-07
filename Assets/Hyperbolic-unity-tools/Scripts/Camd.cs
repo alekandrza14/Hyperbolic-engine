@@ -13,17 +13,29 @@ public class load : MonoBehaviour
 {
 
 }
-
+[ExecuteAlways]
+[AddComponentMenu("Hyperbolic space/Hyperbolic Player Controler")]
 public class Camd : MonoBehaviour
 {
-    public PolarTransform polarTransform = new PolarTransform(0, 0.01f, 0f);
-    public bool px; public bool py; public bool mx; public bool my;
-    public BoxCollider c;
-    public float startscale;
+    Vector4 oldposition;
+    
+    [HideInInspector] public Vector4 position;
+
+
+    [HideInInspector] public PolarTransform polarTransform = new PolarTransform(0, 0.01f, 0f);
+    [HideInInspector] public bool px;[HideInInspector] public bool py;[HideInInspector] public bool mx;[HideInInspector] public bool my;
+    [HideInInspector] public BoxCollider c;
+    [HideInInspector] public float startscale;
+    [HideInInspector] public Quaternion rotation;
+    [Header("=============")]
+    [Header("Physics")]
     public Rigidbody rb;
-    public Light light1;
     public float radiuscolider;
-    public float x;
+    [Header("=============")]
+    [Header("Lighting")]
+    public Light light1;
+
+    [HideInInspector] public float x;
     public void move()
     {
         if (px)
@@ -128,10 +140,23 @@ public class Camd : MonoBehaviour
 
 
     }
+    public void edit()
+    {
+        transform.rotation = rotation;
+    }
+
 
         // Update is called once per frame
-    void Update()
+   public void Update()
     {
+        if (position != oldposition)
+        {
+
+
+            polarTransform = new PolarTransform(position.x, position.y, position.z);
+            transform.position = new Vector3(0,position.w,0);
+        }
+        position = new Vector4(polarTransform.n, polarTransform.s, polarTransform.m, transform.position.y);
         if (Directory.Exists("Assets") && Input.GetKeyDown(KeyCode.F1))
         {
             editorsave es = new editorsave();
@@ -142,11 +167,7 @@ public class Camd : MonoBehaviour
         {
             Application.Quit();
         }
-        for (int i = 0; i < GameObject.FindObjectsOfType<tringle>().Length; i++)
-        {
-            GameObject.FindObjectsOfType<tringle>()[i].up2(polarTransform);
-
-        }
+        
         for (int i = 0; i < GameObject.FindObjectsOfType<Sphere>().Length; i++)
         {
             GameObject.FindObjectsOfType<Sphere>()[i].Update();
@@ -158,10 +179,10 @@ public class Camd : MonoBehaviour
         
         polarTransform.preApplyTranslationZ(v.x);
         polarTransform.preApplyTranslationY(v.y);
-
+        
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            transform.rotation = Quaternion.identity;
+            transform.rotation = rotation;
         }
         if (Input.GetKey(KeyCode.Mouse1))
         {
@@ -171,9 +192,9 @@ public class Camd : MonoBehaviour
             float r1 = Input.GetAxis("Mouse X") * Time.deltaTime *1.5f;
             polarTransform.preApplyRotation(r1);
 
-            light1.transform.rotation = Quaternion.Euler(light1.transform.rotation.eulerAngles.x, light1.transform.rotation.eulerAngles.y - r1 / Time.deltaTime, light1.transform.rotation.eulerAngles.z);
+            
             
         }
-
+        oldposition = position;
     }
 }
