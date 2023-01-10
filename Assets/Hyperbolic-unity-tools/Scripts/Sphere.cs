@@ -278,13 +278,23 @@ public class Sphere : MonoBehaviour
         {
             transform.position = Vector3.zero;
         }
-
-        if (!GetComponent<tringle>()) transform.localScale = ls * MathHyper.Facteur2(gameObject, transform.position); else
+        float a = Mathf.Log( ((p2.n + p2.s) )*(Camd.Main().polarTransform.n+ Camd.Main().polarTransform.s));
+        if (!GetComponent<tringle>()) {
+            if (!float.IsNaN((ls / a).x)&& !float.IsInfinity((ls / a).x))
+            {
+                transform.localScale = ls / a;
+            }
+            else
+            {
+                transform.localScale = Vector3.one/100;
+            }
+            }
+            else
         {
             transform.localScale = Vector3.one;
-           
-                transform.rotation = Quaternion.identity;
-            
+
+            transform.rotation = Quaternion.identity;
+
         }
         oldposition = position;
     }

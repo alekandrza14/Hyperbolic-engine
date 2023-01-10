@@ -125,8 +125,8 @@ public class MathHyper : MonoBehaviour
 
         float posX = p.x;
         float posZ = p.z;
-        float sqrDistance = 399.99999f;
-        if (posX * posX + posZ * posZ < 400)
+        float sqrDistance = 20f;
+        if (posX * posX + posZ * posZ < 21)
         {
 
 
@@ -136,7 +136,8 @@ public class MathHyper : MonoBehaviour
 
         float distance = Mathf.Sqrt(1 - sqrDistance / sqrRayon);
 
-
+      
+       
         //Debug.Log(distance, gameObject);
 
         return distance;

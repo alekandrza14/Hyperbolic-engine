@@ -35,6 +35,8 @@ public class HyperRotate_for_render : EditorTool
 
 
 
+            Undo.RecordObject(target, "Hyperbolic rotate tool");
+
 
             ((Camd)target).rotation = q;
 

@@ -37,11 +37,13 @@ public class HyperTransform_for_render : EditorTool
        
         if (EditorGUI.EndChangeCheck())
         {
-            
 
 
-                Undo.RecordObject(trgettransform, "Hyperbolic move tool");
-                ((Camd)target).polarTransform = newpos;
+
+
+
+            Undo.RecordObject(target, "Hyperbolic move tool");
+            ((Camd)target).polarTransform = newpos;
                 ((Camd)target).transform.position = Vector3.up * v32.y;
            
 

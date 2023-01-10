@@ -36,6 +36,8 @@ public class HyperRotate : EditorTool
 
 
 
+            Undo.RecordObject(target, "Hyperbolic rotate tool");
+
 
             ((Sphere)target).rotation = q;
 

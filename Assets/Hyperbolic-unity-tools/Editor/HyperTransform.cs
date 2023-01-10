@@ -41,7 +41,7 @@ public class HyperTransform : EditorTool
 
 
 
-            Undo.RecordObject(trgettransform, "Hyperbolic move tool");
+            Undo.RecordObject(target, "Hyperbolic move tool");
             ((Sphere)target).p2 = newpos;
             ((Sphere)target).v1 = v32.y;
 
